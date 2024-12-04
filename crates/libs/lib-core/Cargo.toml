@@ -1,0 +1,33 @@
+[package]
+name = "lib-core"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+# -- libs
+lib-utils = { path = "../../libs/lib-utils" }
+lib-auth = { path = "../../libs/lib-auth" }
+lib-query = { path = "../../libs/lib-query" }
+
+thiserror.workspace = true
+tokio.workspace = true
+sqlx.workspace = true
+serde.workspace = true
+serde_with.workspace = true
+serde_json.workspace = true
+derive_more.workspace = true
+uuid.workspace = true
+sea-query.workspace = true
+sea-query-binder.workspace = true
+chrono = { version = "0.4", features = ["serde"] }
+time.workspace = true
+
+# for tracing debugging for early dev
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
