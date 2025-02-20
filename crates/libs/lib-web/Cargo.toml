@@ -1,0 +1,32 @@
+[package]
+name = "lib-web"
+version = "0.1.0"
+edition = "2021"
+
+[lints]
+workspace = true
+
+[dependencies]
+lib-utils = { path = "../../libs/lib-utils" }
+lib-auth = { path = "../../libs/lib-auth" }
+lib-email = { path = "../../libs/lib-email" }
+lib-core = { path = "../../libs/lib-core" }
+
+# --- Async
+tokio = { version = "1", features = ["full"] }
+# --- JSON
+serde.workspace = true
+serde_json.workspace = true
+serde_with.workspace = true
+# --- Web
+axum = { version = "0.8", features = ["macros"] }
+tower-http = { version = "0.6", features = ["fs"] }
+tower-cookies = "0.11"
+# --- Tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+# --- Others
+time.workspace = true
+uuid.workspace = true
+derive_more.workspace = true
+strum_macros = "0.27"

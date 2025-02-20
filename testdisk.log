@@ -1,0 +1,735 @@
+
+
+Wed Jan 22 14:41:12 2025
+Command line: TestDisk
+
+TestDisk 7.2, Data Recovery Utility, February 2024
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 6.12.10-arch1-1 (#1 SMP PREEMPT_DYNAMIC Sat, 18 Jan 2025 02:26:57 +0000) x86_64
+Compiler: GCC 14.2
+ext2fs lib: 1.47.2, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.5
+/dev/sda: LBA, HPA, LBA48 support
+/dev/sda: size       1000215216 sectors
+/dev/sda: user_max   1000215216 sectors
+/dev/sda: native_max 1000215216 sectors
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/sda - 512 GB / 476 GiB - CHS 62260 255 63, sector size=512 - XINCUU-512GB, FW:3A0
+
+Partition table type (auto): EFI GPT
+Disk /dev/sda - 512 GB / 476 GiB - XINCUU-512GB
+Partition table type: EFI GPT
+
+Analyse Disk /dev/sda - 512 GB / 476 GiB - CHS 62260 255 63
+hdr_size=92
+hdr_lba_self=1
+hdr_lba_alt=1000215215 (expected 1000215215)
+hdr_lba_start=2048
+hdr_lba_end=1000215182
+hdr_lba_table=2
+hdr_entries=128
+hdr_entsz=128
+Current partition structure:
+ 1 P EFI System                  4096    2101247    2097152 [EFI]
+ 2 P Linux filesys. data      2101248 1000206899  998105652 [endeavouros]
+
+search_part()
+Disk /dev/sda - 512 GB / 476 GiB - CHS 62260 255 63
+FAT32 at 0/32/33
+FAT1 : 6654-7422
+FAT2 : 7423-8191
+start_rootdir : 8192 root cluster : 2
+Data : 8192-204799
+sectors : 204800
+cluster_size : 2
+no_of_cluster : 98304 (2 - 98305)
+fat_length 769 calculated 769
+FAT differs, FAT sectors=64-80/769
+set_FAT_info: name from BS used
+
+FAT32 at 0/32/33
+FAT: Directory entry is marked as free.
+FAT: cluster=2(0x2), pos=10240
+     MS Data                     2048     206847     204800 [NO NAME]
+     FAT32, blocksize=1024, 104 MB / 100 MiB
+
+recover_EXT2: s_block_group_nr=0/3807, s_mnt_count=41/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+Last mount time:    Wed Jan 22 12:26:54 2025
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 511 GB / 475 GiB
+NTFS at 62260/121/5
+filesystem size           1843200
+sectors_per_cluster       8
+mft_lcn                   76800
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                998371328 1000214527    1843200
+     NTFS found using backup sector, blocksize=4096, 943 MB / 900 MiB
+NTFS at 62260/121/5
+filesystem size           1843200
+sectors_per_cluster       8
+mft_lcn                   76800
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+NTFS: Can't read MFT
+     MS Data               1000214527 1002057726    1843200
+     NTFS, blocksize=4096, 943 MB / 900 MiB
+This partition ends after the disk limits. (start=1000214527, size=1843200, end=1002057726, disk end=1000215216)
+Disk /dev/sda - 512 GB / 476 GiB - CHS 62260 255 63
+Check the hard disk size: HD jumper settings, BIOS detection...
+The hard disk (512 GB / 476 GiB) seems too small! (< 513 GB / 477 GiB)
+The following partition can't be recovered:
+     MS Data               1000214527 1002057726    1843200
+     NTFS, blocksize=4096, 943 MB / 900 MiB
+
+Results
+   P MS Data                     2048     206847     204800 [NO NAME]
+     FAT32, blocksize=1024, 104 MB / 100 MiB
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 511 GB / 475 GiB
+     MS Data                998371328 1000214527    1843200
+     NTFS found using backup sector, blocksize=4096, 943 MB / 900 MiB
+
+Hint for advanced users: dmsetup may be used if you prefer to avoid rewriting the partition table for the moment:
+echo "0 204800 linear /dev/sda 2048" | dmsetup create test0
+echo "0 998105648 linear /dev/sda 2101248" | dmsetup create test1
+echo "0 1843200 linear /dev/sda 998371328" | dmsetup create test2
+
+interface_write()
+ 1 P MS Data                     2048     206847     204800 [NO NAME]
+
+search_part()
+Disk /dev/sda - 512 GB / 476 GiB - CHS 62260 255 63
+FAT32 at 0/32/33
+FAT1 : 6654-7422
+FAT2 : 7423-8191
+start_rootdir : 8192 root cluster : 2
+Data : 8192-204799
+sectors : 204800
+cluster_size : 2
+no_of_cluster : 98304 (2 - 98305)
+fat_length 769 calculated 769
+FAT differs, FAT sectors=64-80/769
+set_FAT_info: name from BS used
+
+FAT32 at 0/32/33
+FAT: Directory entry is marked as free.
+FAT: cluster=2(0x2), pos=10240
+     MS Data                     2048     206847     204800 [NO NAME]
+     FAT32, blocksize=1024, 104 MB / 100 MiB
+FAT32 at 0/32/39
+FAT1 : 6654-7422
+FAT2 : 7423-8191
+start_rootdir : 8192 root cluster : 2
+Data : 8192-204799
+sectors : 204800
+cluster_size : 2
+no_of_cluster : 98304 (2 - 98305)
+fat_length 769 calculated 769
+FAT differs, FAT sectors=48-64/769
+set_FAT_info: name from BS used
+
+FAT32 at 0/32/39
+FAT: Directory entry is marked as free.
+FAT: cluster=2(0x2), pos=10240
+     MS Data                     2048     206847     204800 [NO NAME]
+     FAT32, blocksize=1024, 104 MB / 100 MiB
+FAT32 at 0/32/39
+FAT1 : 6654-7422
+FAT2 : 7423-8191
+start_rootdir : 8192 root cluster : 2
+Data : 8192-204799
+sectors : 204800
+cluster_size : 2
+no_of_cluster : 98304 (2 - 98305)
+fat_length 769 calculated 769
+FAT differs, FAT sectors=48-64/769
+set_FAT_info: name from BS used
+
+FAT32 at 0/32/39
+FAT: Directory entry is marked as free.
+FAT: cluster=2(0x2), pos=10246
+     MS Data                     2054     206853     204800 [NO NAME]
+     FAT32, blocksize=1024, 104 MB / 100 MiB
+FAT32 at 0/65/2
+FAT1 : 32-2079
+FAT2 : 2080-4127
+start_rootdir : 4128 root cluster : 2
+Data : 4128-2097143
+sectors : 2097144
+cluster_size : 8
+no_of_cluster : 261627 (2 - 261628)
+fat_length 2048 calculated 2044
+set_FAT_info: name from BS used
+
+FAT32 at 0/65/2
+FAT: cluster=2(0x2), pos=8224
+     EFI System                  4096    2101239    2097144 [EFI System Partition] [NO NAME]
+     FAT32, blocksize=4096, 1073 MB / 1023 MiB
+FAT32 at 0/65/8
+FAT1 : 32-2079
+FAT2 : 2080-4127
+start_rootdir : 4128 root cluster : 2
+Data : 4128-2097143
+sectors : 2097144
+cluster_size : 8
+no_of_cluster : 261627 (2 - 261628)
+fat_length 2048 calculated 2044
+set_FAT_info: name from BS used
+
+FAT32 at 0/65/8
+FAT: cluster=2(0x2), pos=8224
+     EFI System                  4096    2101239    2097144 [EFI System Partition] [NO NAME]
+     FAT32, blocksize=4096, 1073 MB / 1023 MiB
+FAT32 at 0/65/8
+FAT1 : 32-2079
+FAT2 : 2080-4127
+start_rootdir : 4128 root cluster : 2
+Data : 4128-2097143
+sectors : 2097144
+cluster_size : 8
+no_of_cluster : 261627 (2 - 261628)
+fat_length 2048 calculated 2044
+set_FAT_info: name from BS used
+
+FAT32 at 0/65/8
+FAT: Directory entry is marked as free.
+FAT: cluster=2(0x2), pos=8230
+     MS Data                     4102    2101245    2097144 [NO NAME]
+     FAT32, blocksize=4096, 1073 MB / 1023 MiB
+
+recover_EXT2: s_block_group_nr=0/3807, s_mnt_count=41/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+Last mount time:    Wed Jan 22 12:26:54 2025
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 511 GB / 475 GiB
+
+block_group_nr 1
+
+recover_EXT2: "e2fsck -b 32768 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=1/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 1
+
+recover_EXT2: "e2fsck -b 32768 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=1/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 3
+
+recover_EXT2: "e2fsck -b 98304 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=3/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 3
+
+recover_EXT2: "e2fsck -b 98304 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=3/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 5
+
+recover_EXT2: "e2fsck -b 163840 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=5/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 5
+
+recover_EXT2: "e2fsck -b 163840 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=5/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 7
+
+recover_EXT2: "e2fsck -b 229376 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=7/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 7
+
+recover_EXT2: "e2fsck -b 229376 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=7/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 9
+
+recover_EXT2: "e2fsck -b 294912 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=9/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 9
+
+recover_EXT2: "e2fsck -b 294912 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=9/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+LVM2 magic value at 281/228/25
+part_size 0
+     Linux LVM                4528653    4528652          0
+     LVM2, 0 B
+Partition not added.
+
+block_group_nr 25
+
+recover_EXT2: "e2fsck -b 819200 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=25/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 25
+
+recover_EXT2: "e2fsck -b 819200 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=25/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 27
+
+recover_EXT2: "e2fsck -b 884736 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=27/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 27
+
+recover_EXT2: "e2fsck -b 884736 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=27/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+FAT12 at 716/98/23
+FAT1 : 1-9
+FAT2 : 10-18
+start_rootdir : 19
+Data : 33-2879
+sectors : 2880
+cluster_size : 1
+no_of_cluster : 2847 (2 - 2848)
+fat_length 9 calculated 9
+heads/cylinder 2 (FAT) != 255 (HD)
+sect/track 18 (FAT) != 63 (HD)
+
+FAT12 at 716/98/23
+     MS Data                 11508736   11511615       2880 [NO NAME]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+
+LVM magic value at 867/26/35
+
+block_group_nr 49
+
+recover_EXT2: "e2fsck -b 1605632 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=49/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 49
+
+recover_EXT2: "e2fsck -b 1605632 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=49/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+LVM magic value at 1171/38/42
+
+LVM magic value at 1377/22/7
+
+LVM magic value at 1411/114/10
+
+block_group_nr 81
+
+recover_EXT2: "e2fsck -b 2654208 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=81/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 81
+
+recover_EXT2: "e2fsck -b 2654208 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=81/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+LVM magic value at 1620/215/47
+
+LVM magic value at 1712/191/55
+
+LVM magic value at 1793/1/61
+
+LVM magic value at 1793/23/43
+
+LVM magic value at 1794/123/38
+
+block_group_nr 125
+
+recover_EXT2: "e2fsck -b 4096000 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=125/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 125
+
+recover_EXT2: "e2fsck -b 4096000 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=125/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+cramfs Marker at 2527/79/58
+
+recover_cramfs
+     Linux filesys. data     40601289   41973272    1371983 [GW¹¤Ø«ÝŠ½Í(bždSÜ]
+     cramfs, 702 MB / 669 MiB
+
+cramfs Marker at 2527/79/59
+
+recover_cramfs
+     Linux filesys. data     40601290   41973273    1371983 [GW¹¤Ø«ÝŠ½Í(bždSÜ]
+     cramfs, 702 MB / 669 MiB
+
+LVM magic value at 2553/221/1
+
+LVM magic value at 3013/180/25
+FAT12 at 3021/139/63
+FAT1 : 1-9
+FAT2 : 10-18
+start_rootdir : 19
+Data : 33-2879
+sectors : 2880
+cluster_size : 1
+no_of_cluster : 2847 (2 - 2848)
+fat_length 9 calculated 9
+heads/cylinder 2 (FAT) != 255 (HD)
+sect/track 18 (FAT) != 63 (HD)
+
+FAT12 at 3021/139/63
+     MS Data                 48541184   48544063       2880 [NO NAME]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+
+LVM magic value at 3397/101/48
+
+LVM magic value at 3454/41/44
+FAT12 at 3747/56/6
+FAT1 : 1-9
+FAT2 : 10-18
+start_rootdir : 19
+Data : 33-2879
+sectors : 2880
+cluster_size : 1
+no_of_cluster : 2847 (2 - 2848)
+fat_length 9 calculated 9
+heads/cylinder 2 (FAT) != 255 (HD)
+sect/track 18 (FAT) != 63 (HD)
+
+FAT12 at 3747/56/6
+     MS Data                 60199088   60201967       2880 [NO NAME]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+
+block_group_nr 243
+
+recover_EXT2: "e2fsck -b 7962624 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=243/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 243
+
+recover_EXT2: "e2fsck -b 7962624 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=243/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+LVM magic value at 4718/234/44
+FAT12 at 5255/147/13
+FAT1 : 1-9
+FAT2 : 10-18
+start_rootdir : 19
+Data : 33-2879
+sectors : 2880
+cluster_size : 1
+no_of_cluster : 2847 (2 - 2848)
+fat_length 9 calculated 9
+heads/cylinder 2 (FAT) != 255 (HD)
+sect/track 18 (FAT) != 63 (HD)
+
+FAT12 at 5255/147/13
+     MS Data                 84430848   84433727       2880 [NO NAME]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+
+LVM magic value at 5381/26/12
+
+LVM magic value at 5631/252/27
+
+block_group_nr 343
+
+recover_EXT2: "e2fsck -b 11239424 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=343/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 343
+
+recover_EXT2: "e2fsck -b 11239424 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=343/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+LVM magic value at 5972/40/33
+
+LVM magic value at 6013/138/26
+
+LVM magic value at 6052/73/52
+
+LVM magic value at 6115/155/2
+
+LVM magic value at 6115/230/40
+
+LVM magic value at 6206/119/6
+
+LVM magic value at 6229/51/21
+
+LVM magic value at 6251/200/31
+
+LVM magic value at 6270/16/57
+
+LVM magic value at 6284/65/58
+
+LVM magic value at 6572/63/8
+
+LVM magic value at 7040/5/60
+FAT12 at 7599/61/55
+FAT1 : 1-9
+FAT2 : 10-18
+start_rootdir : 19
+Data : 33-2879
+sectors : 2880
+cluster_size : 1
+no_of_cluster : 2847 (2 - 2848)
+fat_length 9 calculated 9
+heads/cylinder 2 (FAT) != 255 (HD)
+sect/track 18 (FAT) != 63 (HD)
+
+FAT12 at 7599/61/55
+     MS Data                122081832  122084711       2880 [NO NAME]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+FAT12 at 7599/63/9
+FAT1 : 1-9
+FAT2 : 10-18
+start_rootdir : 19
+Data : 33-2879
+sectors : 2880
+cluster_size : 1
+no_of_cluster : 2847 (2 - 2848)
+fat_length 9 calculated 9
+heads/cylinder 2 (FAT) != 255 (HD)
+sect/track 18 (FAT) != 63 (HD)
+
+FAT12 at 7599/63/9
+     MS Data                122081912  122084791       2880 [NO NAME]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+
+LVM magic value at 7978/77/56
+
+LVM magic value at 8387/90/30
+
+LVM magic value at 8573/214/59
+
+LVM magic value at 8615/171/6
+
+LVM magic value at 9594/151/28
+
+recover_EXT2: s_block_group_nr=0/0, s_mnt_count=0/0, s_blocks_per_group=386002316, s_inodes_per_group=32396032
+recover_EXT2: s_blocksize=1024
+recover_EXT2: s_blocks_count 1
+recover_EXT2: part_size 2
+Last mount time:    Mon Apr 21 21:56:16 2042
+     Linux filesys. data    164633284  164633285          2 [û]
+     ext2 blocksize=1024 Sparse_SB, 1024 B
+
+LVM magic value at 10317/65/1
+
+block_group_nr 625
+
+recover_EXT2: "e2fsck -b 20480000 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=625/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 625
+
+recover_EXT2: "e2fsck -b 20480000 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=625/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+LVM magic value at 10528/52/12
+
+LVM magic value at 10717/127/15
+
+HFS magic value at 10982/213/5
+part_size 873085954
+     Mac HFS                176439253 1049525206  873085954
+     HFS blocksize=16777216, 447 GB / 416 GiB
+This partition ends after the disk limits. (start=176439253, size=873085954, end=1049525206, disk end=1000215216)
+
+HFS magic value at 10982/213/7
+
+LVM magic value at 11034/227/57
+
+recover_EXT2: s_block_group_nr=0/12872, s_mnt_count=0/23552, s_blocks_per_group=61258, s_inodes_per_group=61266
+recover_EXT2: s_blocksize=1024
+recover_EXT2: s_blocks_count 788529152
+recover_EXT2: part_size 1577058304
+Filesystem created: Fri Jan  2 01:01:04 1970
+Last mount time:    Mon Aug  5 17:04:00 2097
+     Linux filesys. data    183182923 1760241226 1577058304
+     ext4 blocksize=1024, 807 GB / 752 GiB
+This partition ends after the disk limits. (start=183182923, size=1577058304, end=1760241226, disk end=1000215216)
+
+LVM magic value at 11571/10/57
+
+block_group_nr 729
+
+recover_EXT2: "e2fsck -b 23887872 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=729/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101246 1000206893  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+
+block_group_nr 729
+
+recover_EXT2: "e2fsck -b 23887872 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=729/3807, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 124763206
+recover_EXT2: part_size 998105648
+Filesystem created: Sun Aug 11 23:04:20 2024
+     Linux filesys. data      2101248 1000206895  998105648 [endeavouros]
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 511 GB / 475 GiB
+SIGINT detected! PhotoRec has been killed.
+SIGINT detected! PhotoRec has been killed.

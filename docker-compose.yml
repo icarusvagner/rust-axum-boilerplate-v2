@@ -1,0 +1,28 @@
+services:
+  reverse-proxy:
+    image: traefik:v3.1
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  my-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my-worker:latest
+    deploy:
+      mode: replicated
+      replicas: 3
+    environment:
+      - RUST_LOG=info
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.my-worker.rule=Host(`my-worker.localhost`)"
+      - "traefik.http.services.my-worker.loadbalancer.server.port=80"
+

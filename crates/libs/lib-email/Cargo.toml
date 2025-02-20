@@ -1,0 +1,39 @@
+[package]
+name = "lib-email"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+doctest = false
+
+[lints]
+workspace = true
+
+[dependencies]
+# -- libs
+lib-utils = { path = "../../libs/lib-utils" }
+
+strum = "0.27"
+strum_macros = "0.27"
+mail-send = "0.5"
+axum = { version = "0.8", features = ["macros"] }
+tower-http = { version = "0.6", features = ["fs"] }
+
+thiserror.workspace = true
+tokio.workspace = true
+
+serde.workspace = true
+serde_with.workspace = true
+serde_json.workspace = true
+derive_more.workspace = true
+uuid.workspace = true
+
+# --- time
+time.workspace = true
+time-tz = "2"
+chrono = { version = "0.4", features = ["serde"] }
+
+# --- tracing subscriber
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
