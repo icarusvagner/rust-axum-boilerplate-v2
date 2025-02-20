@@ -1,18 +1,3 @@
 node_modules/
 target/
 
-app-folder/cta-desktop-tauri/dist/
-app-folder/cta-desktop-tauri/target/
-app-folder/cta-desktop-tauri/Cargo.lock
-
-app-folder/cta-mobile-tauri/dist/
-app-folder/cta-mobile-tauri/target/
-app-folder/cta-mobile-tauri/Cargo.lock
-
-app-folder/cta-leptos-v2/dist/
-app-folder/cta-leptos-v2/target/
-app-folder/cta-leptos-v2/Cargo.lock
-
-app-folder/cta-car-rentals/dist/
-app-folder/cta-car-rentals/target/
-app-folder/cta-car-rentals/Cargo.lock
